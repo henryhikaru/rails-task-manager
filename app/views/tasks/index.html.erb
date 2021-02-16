@@ -1,11 +1,13 @@
 <div class="container">
 	<h1>Tasks</h1>
-	<div class="container">
-
-		<% @tasks.each do |task| %>
-			<div class="task">
-				<%= task.completed ? '[x]' : '[ ]' %><%= link_to task.title, task_path(task) %>
-			</div>
-		<% end %>
-	</div>
+	<% @tasks.each do |task| %>
+		<div class="task">
+			<%= task.completed ? '[x]' : '[ ]' %><%= link_to task.title, task_path(task) %>
+			<%= link_to link_to '🗑',
+            task_path(task),
+            method: :delete,
+            data: { confirm: "Are you sure?" } %>
+		</div>
+	<% end %>
+	<%= link_to 'Create task', tasks_new_path %>
 </div>
